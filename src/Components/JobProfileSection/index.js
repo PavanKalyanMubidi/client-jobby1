@@ -43,7 +43,7 @@ const salaryRangeList = [
         label: "40 LPA And Above"
     },
 ]
-// http://localhost:4446/api/filterjobs?employement_type=FULLTIME&minimum_package=1000000&search=
+
 const apiStatusConstants = {
     initial: "INITIAL",
     inProgress: "INPROGRESS",
@@ -100,9 +100,14 @@ const JobProfileSection = () => {
         setSalaryRange(salary);
     }
 
-    const onChangeEmployemetType = (type) => {
-        setEmployementType((prev) => [...prev, type])
-    }
+    const onChangeEmployemetType = (typeId) =>{
+        if(employementType.includes(typeId)) {
+            setEmployementType(employementType.filter((eachType)=> eachType !== typeId));
+        }
+        else{
+            setEmployementType([...employementType, typeId]);
+        }
+    };
 
     const onKeyDown = (e) => {
         if (e.key === 'Enter') {
